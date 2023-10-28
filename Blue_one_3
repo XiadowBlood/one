@@ -1,0 +1,21 @@
+package main
+
+import "fmt"
+
+func main() {
+		var num int = 0
+		fmt.Scanln(&num)
+		i := 0
+		condition := 1
+		for i = 1; i <= num; i++ {
+			if i != 1 && i != num && 0 == num%i {
+				condition = 0
+			}
+		}
+		switch condition {
+		case 0:
+			fmt.Println(num, "不是素数")
+		case 1:
+			fmt.Println(num, "是素数")
+		}
+	}

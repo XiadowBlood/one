@@ -1,0 +1,33 @@
+package main
+
+import (
+	"fmt"
+	"math/rand"
+	"time"
+)
+
+func find(number int) int {
+	let := 1
+	right := 100
+	i := 0
+	middle := (let + right) / 2
+	for i = 0; i < 7; i++ {
+		if middle < number {
+			let = middle + 1
+			middle = ((let + right) / 2)
+		} else if middle > number {
+			right = middle - 1
+			middle = ((let + right) / 2)
+		} else {
+			break
+		}
+	}
+	return middle	
+}
+
+func main() {
+	rand.Seed(time.Now().UnixNano())
+	number := rand.Intn(100) + 1
+	//fmt.Println(number)
+	fmt.Println(find(number))
+}

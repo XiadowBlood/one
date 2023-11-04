@@ -1,0 +1,35 @@
+package main
+
+import "fmt"
+
+func count(num1 float64, sign string, num2 float64) float64 {
+	var sum float64 = 0
+	if "+" == sign {
+		sum = num1 + num2
+	} else if "-" == sign {
+		sum = num1 - num2
+	} else if "*" == sign {
+		sum = num1 * num2
+	} else if "/" == sign {
+		sum = num1 / num2
+	}
+	return sum
+}
+
+func main() {
+	var num1 float64 = 0
+	var num2 float64 = 0
+	var sign string
+	fmt.Println("请输入(num1 sign num2)")
+	for {
+		fmt.Scanln(&num1, &sign, &num2)
+		if 0 == num1 && "/" == sign {
+			fmt.Println("被除数不能为0")
+		} else if "+" != sign && "-" != sign && "*" != sign && "/" != sign {
+			fmt.Println("无此运算符")
+		} else {
+			break
+		}
+	}
+	fmt.Println(count(num1, sign, num2))
+}

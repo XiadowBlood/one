@@ -2,34 +2,38 @@ package main
 
 import "fmt"
 
-func count(num1 float64, sign string, num2 float64) float64 {
-	var sum float64 = 0
-	if "+" == sign {
-		sum = num1 + num2
-	} else if "-" == sign {
-		sum = num1 - num2
-	} else if "*" == sign {
-		sum = num1 * num2
-	} else if "/" == sign {
-		sum = num1 / num2
-	}
-	return sum
+func Calculator(num1 float64, num2 float64, CMD func(num1 float64, num2 float64) float64) float64 {
+	return CMD(num1, num2)
 }
 
 func main() {
-	var num1 float64 = 0
-	var num2 float64 = 0
+	var num1, num2, result float64 = 0, 0, 0
 	var sign string
-	fmt.Println("请输入(num1 sign num2)")
 	for {
 		fmt.Scanln(&num1, &sign, &num2)
-		if 0 == num1 && "/" == sign {
-			fmt.Println("被除数不能为0")
-		} else if "+" != sign && "-" != sign && "*" != sign && "/" != sign {
-			fmt.Println("无此运算符")
-		} else {
+		if "+" == sign {
+			result = Calculator(num1, num2, func(float64, float64) float64 {
+				return num1 + num2
+			})
 			break
+		} else if "-" == sign {
+			result = Calculator(num1, num2, func(float64, float64) float64 {
+				return num1 - num2
+			})
+			break
+		} else if "*" == sign {
+			result = Calculator(num1, num2, func(float64, float64) float64 {
+				return num1 * num2
+			})
+			break
+		} else if "/" == sign && num2 != 0 {
+			result = Calculator(num1, num2, func(float64, float64) float64 {
+				return num1 / num2
+			})
+			break
+		} else {
+			fmt.Println("输入无效!")
 		}
 	}
-	fmt.Println(count(num1, sign, num2))
+	fmt.Println(result)
 }

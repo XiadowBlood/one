@@ -1,0 +1,68 @@
+package main
+
+import "fmt"
+
+type Function interface {
+	Inspect()
+	Renew(int)
+	Print()
+}
+
+type Goods struct {
+	name    string
+	price   float32
+	numbers int
+}
+
+func (Name *Goods) Inspect() {
+	fmt.Println("库存数量: ", Name.numbers)
+}
+
+func (Name *Goods) Renew(newnumber int) {
+	Name.numbers = newnumber
+}
+
+func (Name *Goods) Print() {
+	fmt.Println("商品名称: ", Name.name, "商品数量: ", Name.numbers)
+}
+
+type E_goods struct {
+	name    string
+	price   float32
+	numbers int
+	brand   string
+	model   string
+}
+
+func (Name *E_goods) Inspect() {
+	fmt.Println("品牌: ", Name.brand, "型号: ", Name.model, "库存数量: ", Name.numbers)
+}
+
+func (Name *E_goods) Renew(newnumber int) {
+	Name.numbers = newnumber
+}
+
+func (Name *E_goods) Print() {
+	fmt.Println("电子商品名称: ", Name.name, "品牌: ", Name.brand, "型号: ", Name.model, "商品数量: ", Name.numbers)
+}
+
+func main() {
+	var p1 Goods
+	p1.name = "水杯"
+	p1.price = 15.3
+	p1.numbers = 2000
+	var p2 E_goods
+	p2.name = "手机"
+	p2.brand = "Redmi"
+	p2.model = "K60"
+	p2.price = 3200
+	p2.numbers = 1000
+	p1.Inspect()
+	p1.Print()
+	p1.Renew(1000)
+	p1.Print()
+	p2.Inspect()
+	p2.Print()
+	p2.Renew(500)
+	p2.Print()
+}
